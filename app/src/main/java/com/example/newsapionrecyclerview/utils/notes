@@ -1,0 +1,5 @@
+CLEARTEXT communication to newsapi.org not permitted by network security policy
+решаем добавлением: android:usesCleartextTraffic="true" в manifest
+
+
+
