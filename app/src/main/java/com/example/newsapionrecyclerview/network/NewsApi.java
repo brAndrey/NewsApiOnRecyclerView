@@ -1,5 +1,6 @@
 package com.example.newsapionrecyclerview.network;
 
+import com.example.newsapionrecyclerview.data.model.NewsArray;
 import com.example.newsapionrecyclerview.data.model.NewsModel;
 import com.example.newsapionrecyclerview.utils.Constant;
 
@@ -18,11 +19,16 @@ public interface NewsApi {
     Call<List<NewsModel>> gatData (@Query("country") String ru,@Query("apiKey") String apiKey);
 
     @GET ("/v2/top-headlines")
-    Call<List<NewsModel>> gatDataInter ();
+    Call<NewsArray> gatNewsList (@Query("country") String ru, @Query("apiKey") String apiKey);
 
 
     @GET ("/v2/top-headlines")
-    Call<String> gatString (@Query("country") String ru,@Query("apiKey") String apiKey);
+    Call<List<NewsModel>> gatDataInter ();
+
+    @GET ("/v2/top-headlines")
+    Call<NewsArray> gatDataList ();
+
+
 
 
 

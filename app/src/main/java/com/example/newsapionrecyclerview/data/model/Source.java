@@ -2,7 +2,9 @@ package com.example.newsapionrecyclerview.data.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Source {
+import java.io.Serializable;
+
+public class Source implements Serializable {
 
     @SerializedName("id")
 
