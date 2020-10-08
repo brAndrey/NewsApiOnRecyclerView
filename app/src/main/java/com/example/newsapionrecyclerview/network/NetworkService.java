@@ -1,23 +1,15 @@
 package com.example.newsapionrecyclerview.network;
 
-import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.JobIntentService;
 
-import com.example.newsapionrecyclerview.data.model.NewsArray;
-import com.example.newsapionrecyclerview.data.model.NewsModel;
-import com.example.newsapionrecyclerview.data.tables.GsonHolder;
-import com.example.newsapionrecyclerview.screen.MainActivity;
-import com.example.newsapionrecyclerview.utils.Constant;
+import com.example.newsapionrecyclerview.data.GsonHolder;
+import com.example.newsapionrecyclerview.modeldata.NewsArray;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import okhttp3.Request;
 
@@ -45,7 +37,6 @@ public class NetworkService  {
     protected static void onHandleWork(@NonNull Intent intent) {
         Log.i(LOG,"onHandleWork");
         Request request = GsonHolder.getGson().fromJson(intent.getStringExtra(REQUEST_KEY), Request.class);
-        //List<NewsModel> newsModels = new ArrayList();
         NewsArray newsModels = new NewsArray();
         try {
 
@@ -68,7 +59,7 @@ public class NetworkService  {
         if (newsModels == null) {
             Log.i(LOG, " Запрос не null");
         } else {
-            //Log.i(LOG, " size " + newsModels.size());
+
             Log.i(LOG, " size " + newsModels);
         }
     }

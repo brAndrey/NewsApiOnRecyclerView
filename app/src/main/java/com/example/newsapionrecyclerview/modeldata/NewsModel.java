@@ -1,6 +1,4 @@
-package com.example.newsapionrecyclerview.data.model;
-
-import android.util.Log;
+package com.example.newsapionrecyclerview.modeldata;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -109,7 +107,7 @@ public class NewsModel implements Serializable {
         sb.append("\n url:" + this.url);
         sb.append("\n urlToImage:" + this.urlToImage);
         sb.append("\n publishedAt:" + this.publishedAt);
-
+        sb.append("\n *****************");
         return sb.toString();
     }
 }

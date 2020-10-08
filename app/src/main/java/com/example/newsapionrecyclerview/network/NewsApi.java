@@ -1,8 +1,8 @@
 package com.example.newsapionrecyclerview.network;
 
-import com.example.newsapionrecyclerview.data.model.NewsArray;
-import com.example.newsapionrecyclerview.data.model.NewsModel;
-import com.example.newsapionrecyclerview.utils.Constant;
+
+import com.example.newsapionrecyclerview.modeldata.NewsArray;
+import com.example.newsapionrecyclerview.modeldata.NewsModel;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public interface NewsApi {
     // & - должен добавится автоматически т.к. параметров 2
 
     @GET ("/v2/top-headlines")
-    Call<List<NewsModel>> gatData (@Query("country") String ru,@Query("apiKey") String apiKey);
+    Call<List<NewsModel>> gatData (@Query("country") String ru, @Query("apiKey") String apiKey);
 
     @GET ("/v2/top-headlines")
     Call<NewsArray> gatNewsList (@Query("country") String ru, @Query("apiKey") String apiKey);
@@ -27,15 +27,5 @@ public interface NewsApi {
 
     @GET ("/v2/top-headlines")
     Call<NewsArray> gatDataList ();
-
-
-
-
-
-    @GET ("")
-        //"apiKey="+ Constant.API_KEY)
-        //Call<List<NewsModel>> gatData (@Query("key") String key, @Query("num") int count);
-    Call<List<NewsModel>> gatData0 ();
-
 
 }

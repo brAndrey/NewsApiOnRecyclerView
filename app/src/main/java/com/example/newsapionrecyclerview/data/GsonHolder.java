@@ -1,4 +1,4 @@
-package com.example.newsapionrecyclerview.data.tables;
+package com.example.newsapionrecyclerview.data;
 
 import androidx.annotation.NonNull;
 

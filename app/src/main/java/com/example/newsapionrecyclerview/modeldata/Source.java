@@ -1,4 +1,4 @@
-package com.example.newsapionrecyclerview.data.model;
+package com.example.newsapionrecyclerview.modeldata;
 
 import com.google.gson.annotations.SerializedName;
 
