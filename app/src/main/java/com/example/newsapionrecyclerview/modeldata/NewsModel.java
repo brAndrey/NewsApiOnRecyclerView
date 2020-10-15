@@ -102,7 +102,7 @@ public class NewsModel implements Serializable {
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("\n author:" + this.author);
-        sb.append("\n title:" + this.title.substring(0,50));
+        sb.append("\n title:" + this.title);
         sb.append("\n description:" + this.description);
         sb.append("\n url:" + this.url);
         sb.append("\n urlToImage:" + this.urlToImage);
