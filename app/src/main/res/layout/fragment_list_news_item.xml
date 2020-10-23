@@ -5,16 +5,24 @@
     xmlns:tools="http://schemas.android.com/tools"  >
 
     <data>
+
+        <import type="android.view.View.OnClickListener"></import>
+
         <variable
             name="newsModel"
             type="com.example.newsapionrecyclerview.modeldata.NewsModel" />
+
+        <variable
+            name="lictener"
+            type="com.example.newsapionrecyclerview.screen.news_list_fragment.ListFragmentListener" />
 
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
 
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:onClick="@{() -> lictener.onTaskClicked(newsModel)}">
 
     <ImageView
         android:id="@+id/imageViewURL"
@@ -24,13 +32,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:url="@{newsModel.urlToImage}"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:onClick="@{() -> lictener.onTaskClicked(newsModel)}"/>
 
     <TextView
         android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@{newsModel.title}"
+        android:text="@{newsModel.TitleForList}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageViewURL"

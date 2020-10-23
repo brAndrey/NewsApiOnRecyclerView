@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,40 +18,39 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newsapionrecyclerview.R;
 import com.example.newsapionrecyclerview.modeldata.NewsModel;
-import com.example.newsapionrecyclerview.network.SimpleApp;
 import com.example.newsapionrecyclerview.repositories.ApiResponse;
-import com.example.newsapionrecyclerview.repositories.DataRepozitories;
+import com.example.newsapionrecyclerview.screen.activity.MainActivityViewModel;
 
 import java.util.List;
 
 public class NewsListFragment extends Fragment {
- private    FragmentAdapterRV fragmentAdapterRV;
+
+    private FragmentAdapterRV fragmentAdapterRV;
 
     private RecyclerView recyclerView;
 
-    private  List<NewsModel> newsModelList = null;
+    private List<NewsModel> newsModelList = null;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_list_news, container,false);
+        View view = inflater.inflate(R.layout.fragment_list_news, container, false);
         //return super.onCreateView(inflater, container, savedInstanceState);
-
 
 
 // получаем данные из репозитория , без учёта жизненного цикла observeForever
 //        DataRepozitories dataRepozitories = DataRepozitories.getInstance();
 //        dataRepozitories.getData();
 
-recyclerView = view.findViewById(R.id.recyclerViewFragment);
-
-recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-
+        recyclerView = view.findViewById(R.id.recyclerViewFragment);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
 
-        NewsListFragmentViewModel viewModel =  ViewModelProviders.of(getActivity()).get(NewsListFragmentViewModel.class);
+        NewsListFragmentViewModel viewModelData = ViewModelProviders.of(getActivity()).get(NewsListFragmentViewModel.class);
+        MainActivityViewModel viewModelUI   = ViewModelProviders.of(getActivity()).get(MainActivityViewModel.class);
 
-        viewModel.getData().observe(this, new Observer<ApiResponse>() {
+        viewModelData.getData().observe(this, new Observer<ApiResponse>() {
             @Override
             public void onChanged(ApiResponse apiResponse) {
                 if (apiResponse == null) {
@@ -66,8 +64,11 @@ recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
                     if (apiModels != null) {
                         //notifyAboutNewItems(apiModels);
-                        fragmentAdapterRV = new FragmentAdapterRV(apiModels);
+                        // ушли выводить на экран
+
+                        fragmentAdapterRV = new FragmentAdapterRV(apiModels,viewModelUI);
                         recyclerView.setAdapter(fragmentAdapterRV);
+
 
                         Log.i(this.getClass().getSimpleName(), "apiModels size " + apiModels.size());
                         for (NewsModel elem : apiModels) {
@@ -86,12 +87,11 @@ recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         });
 
 
-
-
         return view;
     }
 
     private void notifyAboutNewItems(List<NewsModel> apiModels) {
         newsModelList.addAll(apiModels);
     }
+
 }

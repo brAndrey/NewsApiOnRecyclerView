@@ -6,19 +6,22 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
 import com.example.newsapionrecyclerview.modeldata.NewsArray;
+import com.example.newsapionrecyclerview.modeldata.NewsModel;
 import com.example.newsapionrecyclerview.network.SimpleApp;
 
 public class DataRepozitories {
 
+    MediatorLiveData<NewsModel> lastPosition;
     MediatorLiveData<ApiResponse> apiResponse;
+
     private SimpleApp simpleApp;
 
     // инициируем синглтон
     private static DataRepozitories INSTANCE;
 
     private DataRepozitories() {
-
-        apiResponse = new MediatorLiveData<>();
+        lastPosition = new MediatorLiveData<NewsModel>();
+        apiResponse     = new MediatorLiveData<>();
         //simpleApp = new SimpleApp;
     }
 
@@ -44,5 +47,14 @@ public class DataRepozitories {
             }
         });
         return apiResponse;
+    }
+
+
+    public void setLastPosition(NewsModel newsModel) {
+       lastPosition.setValue(newsModel);
+    }
+
+    public LiveData<NewsModel> getLastPosition(){
+      return lastPosition;
     }
 }

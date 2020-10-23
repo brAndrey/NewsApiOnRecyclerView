@@ -1,5 +1,8 @@
 package com.example.newsapionrecyclerview.modeldata;
 
+//import com.google.common.base.Strings;
+import android.util.Log;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -97,6 +100,18 @@ public class NewsModel implements Serializable {
     public void setContent(String content) {
         this.content = content;
     }
+
+
+    public String getTitleForList() {
+        Log.e("getTitleForList",title);
+//        if (! Strings .isNullOrEmpty(mTitle)) {
+//            return mTitle;
+//        } else {
+//            return mDescription;
+//        }
+        return title;
+    }
+
 
     @Override
     public String toString(){

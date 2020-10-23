@@ -1,20 +1,24 @@
 package com.example.newsapionrecyclerview.screen.news_list_fragment;
 
-import android.util.Log;
-
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.newsapionrecyclerview.databinding.FragmentListNewsBindingImpl;
 import com.example.newsapionrecyclerview.databinding.FragmentListNewsItemBinding;
 import com.example.newsapionrecyclerview.modeldata.NewsModel;
 
 
 public class FragmentHolderRV extends RecyclerView.ViewHolder {
+
+    //private NewsListActivityViewModel viewModel;
+
     public FragmentListNewsItemBinding binding;
 
     public FragmentHolderRV(FragmentListNewsItemBinding binding) {
         super(binding.getRoot());
         this.binding = binding;
+
+
+
+
 
     }
 
@@ -26,6 +30,10 @@ public class FragmentHolderRV extends RecyclerView.ViewHolder {
 
         binding.executePendingBindings();
 
+    }
+
+    public  FragmentListNewsItemBinding getBinding(){
+        return binding;
     }
 
 }

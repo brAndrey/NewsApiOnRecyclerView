@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.newsapionrecyclerview.modeldata.NewsModel;
 import com.example.newsapionrecyclerview.repositories.ApiResponse;
 import com.example.newsapionrecyclerview.repositories.DataRepozitories;
 
@@ -12,10 +13,14 @@ public class NewsListFragmentViewModel extends ViewModel {
     private MediatorLiveData<ApiResponse> apiResponseMLD;
     private DataRepozitories dataRepozitories = DataRepozitories.getInstance();
 
+    private NewsModel lastNewsmodel;
+
     public NewsListFragmentViewModel() {
 
         apiResponseMLD = new MediatorLiveData<>();
+
     }
+
 
     public LiveData<ApiResponse> getData() {
         dataRepozitories.getDataL().observeForever(apiResponse ->{
@@ -33,4 +38,7 @@ public class NewsListFragmentViewModel extends ViewModel {
         return apiResponseMLD;
     }
 
+    public void setDataRepozitoriesLastPosition(NewsModel newsModel) {
+        dataRepozitories.setLastPosition(newsModel);
+    }
 }
